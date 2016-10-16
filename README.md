@@ -1,4 +1,4 @@
-Angular2 with TypeScript, SASS and Gulp
+Angular2 with TypeScript, Sass and Gulp
 =================================
 
 A basic Angular2 application with Gulp as build system.
@@ -31,7 +31,7 @@ A basic Angular2 application with Gulp as build system.
 
 Clone the repository:
 
-> git clone https://github.com/kolorobot/angular2-typescript-gulp.git
+> git clone https://github.com/FlyingDonkeyDev/angular2-typescript-gulp.git
 
 Navigate to `angular2-typescript-gulp` directory:
 
