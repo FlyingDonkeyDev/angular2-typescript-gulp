@@ -2,16 +2,20 @@
 
 const gulp = require("gulp");
 const del = require("del");
-const tsc = require("gulp-typescript");
 const sass = require("gulp-sass");
+const sassLint = require('gulp-sass-lint');
 const autoprefixer = require('autoprefixer');
 const postcss = require('gulp-postcss');
 const mqpacker = require('css-mqpacker');
 const cssnano = require('cssnano');
 const sourcemaps = require('gulp-sourcemaps');
+const tsc = require("gulp-typescript");
 const tsProject = tsc.createProject("tsconfig.json");
 const tslint = require('gulp-tslint');
 const runSequence = require('run-sequence');
+
+// --------------------------------------------------------------
+// PROJECT CONFIG
 
 const buildPath = 'www';
 
@@ -53,9 +57,19 @@ gulp.task('build-clean', (cb) => {
 });
 
 // --------------------------------------------------------------
+// Lint all custom Sass files.
+
+gulp.task('sass-lint', () => {
+  return gulp.src( paths.sass )
+    .pipe(sassLint({ config: '.sass-lint.yml' }))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError());
+});
+
+// --------------------------------------------------------------
 // Lint all custom TypeScript files.
 
-gulp.task('tslint', () => {
+gulp.task('ts-lint', () => {
     return gulp.src( paths.ts )
         .pipe(tslint({
             formatter: 'prose'
@@ -66,6 +80,7 @@ gulp.task('tslint', () => {
 // --------------------------------------------------------------
 // Compile SASS sources and create sourcemaps in
 // build directory.
+// If have linter, include  ["sass-lint"] as 2nd parameter
 
 gulp.task('sass', () => {
   return gulp.src( paths.sass )
@@ -79,7 +94,7 @@ gulp.task('sass', () => {
 // --------------------------------------------------------------
 // Compile TypeScript sources and create sourcemaps in
 // build directory.
-// If have linter, include  ["tslint"] as 2nd parameter
+// If have linter, include  ["ts-lint"] as 2nd parameter
 
 gulp.task("typescript", () => {
     let tsResult = gulp.src( paths.ts )
@@ -96,7 +111,7 @@ gulp.task("typescript", () => {
 // build directory.
 
 gulp.task("html", () => {
-    return gulp.src(["src/**/*", "!**/*.ts", "!**/*.scss", "!**/*.sass"])
+    return gulp.src(["src/**/*", "!**/*.ts", "!**/*.scss", "!src/scss"])
         .pipe(gulp.dest( buildPath ));
 });
 

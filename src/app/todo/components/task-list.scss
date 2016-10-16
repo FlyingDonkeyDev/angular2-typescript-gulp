@@ -1,8 +1,10 @@
+@import '../../../scss/variables';
+
 li {
   padding: 10px;
 
   &.selected {
-    background-color: #8a8a8a;
+    background-color: $bg-color;
 
     transform: translate(50px, 0);
   }
