@@ -1,4 +1,4 @@
-Angular2 with TypeScript and Gulp
+Angular2 with TypeScript, SASS and Gulp
 =================================
 
 A basic Angular2 application with Gulp as build system.

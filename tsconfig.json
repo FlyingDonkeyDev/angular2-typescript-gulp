@@ -10,7 +10,7 @@
     "removeComments": false,
     "noImplicitAny": false
   },
-  "exclude": [
+  "file": [
     "gulpfile.ts",
     "node_modules"
   ]

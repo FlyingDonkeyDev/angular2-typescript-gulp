@@ -1,0 +1,9 @@
+li {
+  padding: 10px;
+
+  &.selected {
+    background-color: #8a8a8a;
+
+    transform: translate(50px, 0);
+  }
+}
